@@ -1,6 +1,6 @@
 // @SOURCE:/Users/sromic/play/GitWsDemo/conf/routes
-// @HASH:0a8f4347d99395dc4e4a27a6411882ba5030a916
-// @DATE:Thu Jun 11 23:55:38 CEST 2015
+// @HASH:d80540b2470fdc2e02b87feb230b0ade81e31933
+// @DATE:Fri Jun 12 00:08:52 CEST 2015
 
 
 import play.core._
@@ -59,13 +59,20 @@ controllers.Application.gitSearchCode(fakeValue[String]),
 HandlerDef(this.getClass.getClassLoader, "", "controllers.Application", "gitSearchCode", Seq(classOf[String]),"GET", """""", Routes.prefix + """searchCode"""))
         
 
-// @LINE:12
-private[this] lazy val controllers_Assets_at4_route = Route("GET", PathPattern(List(StaticPart(Routes.prefix),StaticPart(Routes.defaultPrefix),StaticPart("assets/"),DynamicPart("file", """.+""",false))))
-private[this] lazy val controllers_Assets_at4_invoker = createInvoker(
+// @LINE:10
+private[this] lazy val controllers_Application_gitSearchUsers4_route = Route("GET", PathPattern(List(StaticPart(Routes.prefix),StaticPart(Routes.defaultPrefix),StaticPart("searchUsers"))))
+private[this] lazy val controllers_Application_gitSearchUsers4_invoker = createInvoker(
+controllers.Application.gitSearchUsers(fakeValue[String]),
+HandlerDef(this.getClass.getClassLoader, "", "controllers.Application", "gitSearchUsers", Seq(classOf[String]),"GET", """""", Routes.prefix + """searchUsers"""))
+        
+
+// @LINE:13
+private[this] lazy val controllers_Assets_at5_route = Route("GET", PathPattern(List(StaticPart(Routes.prefix),StaticPart(Routes.defaultPrefix),StaticPart("assets/"),DynamicPart("file", """.+""",false))))
+private[this] lazy val controllers_Assets_at5_invoker = createInvoker(
 controllers.Assets.at(fakeValue[String], fakeValue[String]),
 HandlerDef(this.getClass.getClassLoader, "", "controllers.Assets", "at", Seq(classOf[String], classOf[String]),"GET", """ Map static resources from the /public folder to the /assets URL path""", Routes.prefix + """assets/$file<.+>"""))
         
-def documentation = List(("""GET""", prefix,"""controllers.Application.index"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """index2""","""controllers.Application.index2"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """searchRepositories""","""controllers.Application.gitSearchRespositories(q:String)"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """searchCode""","""controllers.Application.gitSearchCode(q:String)"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """assets/$file<.+>""","""controllers.Assets.at(path:String = "/public", file:String)""")).foldLeft(List.empty[(String,String,String)]) { (s,e) => e.asInstanceOf[Any] match {
+def documentation = List(("""GET""", prefix,"""controllers.Application.index"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """index2""","""controllers.Application.index2"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """searchRepositories""","""controllers.Application.gitSearchRespositories(q:String)"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """searchCode""","""controllers.Application.gitSearchCode(q:String)"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """searchUsers""","""controllers.Application.gitSearchUsers(q:String)"""),("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """assets/$file<.+>""","""controllers.Assets.at(path:String = "/public", file:String)""")).foldLeft(List.empty[(String,String,String)]) { (s,e) => e.asInstanceOf[Any] match {
   case r @ (_,_,_) => s :+ r.asInstanceOf[(String,String,String)]
   case l => s ++ l.asInstanceOf[List[(String,String,String)]]
 }}
@@ -105,10 +112,18 @@ case controllers_Application_gitSearchCode3_route(params) => {
 }
         
 
-// @LINE:12
-case controllers_Assets_at4_route(params) => {
+// @LINE:10
+case controllers_Application_gitSearchUsers4_route(params) => {
+   call(params.fromQuery[String]("q", None)) { (q) =>
+        controllers_Application_gitSearchUsers4_invoker.call(controllers.Application.gitSearchUsers(q))
+   }
+}
+        
+
+// @LINE:13
+case controllers_Assets_at5_route(params) => {
    call(Param[String]("path", Right("/public")), params.fromPath[String]("file", None)) { (path, file) =>
-        controllers_Assets_at4_invoker.call(controllers.Assets.at(path, file))
+        controllers_Assets_at5_invoker.call(controllers.Assets.at(path, file))
    }
 }
         

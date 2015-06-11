@@ -36,12 +36,18 @@ class ApplicationSpec extends Specification {
     }
 
     "render the git page" in new WithApplication {
-      val gitPage = route(FakeRequest(GET, "/searchRepositories?q=hello world")).get
+      val gitSearchRepositoriesPage = route(FakeRequest(GET, "/searchRepositories?q=tetris")).get
 
-      status(gitPage) must equalTo(NOT_IMPLEMENTED)
-      contentType(gitPage) must beSome.which(_ == "text/html")
-      contentAsString(gitPage) must contain ("Action not implemented yet")
+      status(gitSearchRepositoriesPage) must equalTo(OK)
+      contentType(gitSearchRepositoriesPage) must beSome.which(_ == "application/json")
 
+    }
+
+    "show users search results" in new WithApplication {
+      val gitSearchUsersPage = route(FakeRequest(GET, "/searchUsers?q=sromic")).get
+
+      status(gitSearchUsersPage) must equalTo(OK)
+      contentType(gitSearchUsersPage) must beSome.which(_ == "application/json")
     }
   }
 }

@@ -1,6 +1,6 @@
 // @SOURCE:/Users/sromic/play/GitWsDemo/conf/routes
-// @HASH:0a8f4347d99395dc4e4a27a6411882ba5030a916
-// @DATE:Thu Jun 11 23:55:38 CEST 2015
+// @HASH:d80540b2470fdc2e02b87feb230b0ade81e31933
+// @DATE:Fri Jun 12 00:08:52 CEST 2015
 
 package controllers;
 

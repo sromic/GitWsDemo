@@ -25,10 +25,16 @@ class IntegrationSpec extends Specification {
       browser.pageSource must contain ("Hello world")
     }
 
-    "work from within a browser when calling git page" in new WithBrowser {
-      browser goTo("http://localhost:" + port + "/searchRepositories?q=hello%20world")
+    "work from within a browser when calling gitSearchRepositories servis" in new WithBrowser {
+      browser goTo("http://localhost:" + port + "/searchRepositories?q=tetris")
 
-      browser.pageSource must contain ("Action not implemented yet.")
+      browser.pageSource must contain ("\"name\":\"tetris\"")
+    }
+
+    "work from within a browser when calling gitSearchUsers service" in new WithBrowser {
+      browser goTo("http://localhost:" + port + "/searchUsers?q=sromic")
+
+      browser.pageSource must contain ("\"login\":\"sromic\"")
     }
   }
 }
