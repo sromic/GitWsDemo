@@ -7,6 +7,7 @@ GET        /                    controllers.Application.index
 GET        /index2              controllers.Application.index2
 GET        /searchRepositories  controllers.Application.gitSearchRespositories(q: String)
 GET        /searchCode          controllers.Application.gitSearchCode(q: String)
+GET        /searchUsers         controllers.Application.gitSearchUsers(q: String)
 
 # Map static resources from the /public folder to the /assets URL path
 GET        /assets/*file        controllers.Assets.at(path="/public", file)
